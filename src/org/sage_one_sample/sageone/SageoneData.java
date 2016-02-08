@@ -20,8 +20,8 @@ public class SageoneData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	*/
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
 		String accessToken = req.getParameter("access_token");
@@ -64,15 +64,15 @@ public class SageoneData extends HttpServlet {
 			resp.getWriter().println("<pre>" + prettyJson + "</pre>");
 			resp.getWriter().println("</body>");
 			resp.getWriter().println("</html>");
-			} catch (IOException ex) {
-				ex.printStackTrace();
-				}
-		HttpUtility.disconnect();
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
+		HttpUtility.disconnect();
+	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -15,8 +15,8 @@ public class SageoneAuth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	*/
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String clientId = SageoneConstants.CLIENT_ID;
 		String callbackUrl = SageoneConstants.CALLBACK_URL;
@@ -28,8 +28,8 @@ public class SageoneAuth extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
