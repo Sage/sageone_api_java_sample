@@ -2,7 +2,7 @@
 
 Sample application that integrates with Sage One Accounting via the Sage One API.
 
-Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConstants.java) file with your application's client_id, client_secret and signing_secret.
+Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConstants.java) file with your application's client_id, client_secret, signing_secret and callback_url.
 
 Authentication with Sage One is handled as follows:
 

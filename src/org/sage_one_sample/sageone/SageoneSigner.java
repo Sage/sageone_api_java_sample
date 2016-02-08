@@ -9,28 +9,28 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 public class SageoneSigner {
-  String method;
-  String url;
-  TreeMap<String, String> params;
-  String nonce;
-  String secret;
-  String token;
+  private String method;
+  private String url;
+  private TreeMap<String, String> params;
+  private String nonce;
+  private String secret;
+  private String token;
 
   SageoneSigner(String requestMethod, String requestUrl, TreeMap<String, String> requestBodyParams, String requestNonce, String signingSecret, String accessToken) {
-    method = requestMethod;
-    url = requestUrl;
-    params = requestBodyParams;
-    nonce = requestNonce;
-    secret = signingSecret;
-    token = accessToken;
+    this.method = requestMethod;
+    this.url = requestUrl;
+    this.params = requestBodyParams;
+    this.nonce = requestNonce;
+    this.secret = signingSecret;
+    this.token = accessToken;
   }
 
   public String signature() {
     String result = null;
     try {
       result = Base64.getEncoder().encodeToString(hmacSha1());
-    } catch (UnsupportedEncodingException | NoSuchAlgorithmException | InvalidKeyException e) {
-      //handle exceptions
+    } catch (UnsupportedEncodingException | NoSuchAlgorithmException | InvalidKeyException ex) {
+      ex.printStackTrace();
     }
     return result;
   }
@@ -116,9 +116,9 @@ public class SageoneSigner {
   private URL parsedUrl() {
     URL parsedUrl = null;
     try {
-        parsedUrl = new URL(url);
-    } catch(MalformedURLException e) {
-        //handle exception
+      parsedUrl = new URL(url);
+    } catch(MalformedURLException ex) {
+      ex.printStackTrace();
     }
     return parsedUrl;
   }
