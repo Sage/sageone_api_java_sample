@@ -26,7 +26,7 @@ public class SageoneData extends HttpServlet {
     String signingSecret = SageoneConstants.SIGNING_SECRET;
     String accessToken = req.getParameter("access_token");
     String endpoint = "https://api.sageone.com/" + req.getParameter("endpoint");
-    String nonce = "e033affd7f6ba0684046620b02932732";
+    String nonce = Nonce.generateNonce();
     String authHeader = "Bearer " + accessToken;
     TreeMap<String, String> params = new TreeMap<String, String>();
     SageoneSigner s = new SageoneSigner("get", endpoint, params, nonce, signingSecret, accessToken);
