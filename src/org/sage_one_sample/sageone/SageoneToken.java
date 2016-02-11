@@ -18,7 +18,7 @@ public class SageoneToken extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
-  * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+  * POST request to exchange authorisation code for access_token
   */
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String requestURL = SageoneConstants.TOKEN_ENDPOINT;

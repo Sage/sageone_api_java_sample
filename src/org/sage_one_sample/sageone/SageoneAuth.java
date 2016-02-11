@@ -15,7 +15,7 @@ public class SageoneAuth extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
-  * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+  * Redirect the user to the authorisation url with the required query params
   */
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String clientId = SageoneConstants.CLIENT_ID;

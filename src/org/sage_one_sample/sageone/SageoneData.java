@@ -19,9 +19,7 @@ import com.google.gson.GsonBuilder;
 public class SageoneData extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  /**
-  * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-  */
+  /* GET request */
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String signingSecret = SageoneConstants.SIGNING_SECRET;
     String accessToken = req.getParameter("access_token");
