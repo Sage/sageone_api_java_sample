@@ -17,13 +17,13 @@ public class SageoneSigner {
   private String token;
 
   /**
-	* @param $request_method The request method (String)
-	* @param $url The url of the request (String)
-	* @param $request_body_params TreeMap<String, String> of key value pairs representing the request body
-	* @param $nonce The nonce (String)
-	* @param $secret Your application's signing_secret (String)
-	* @param $token Your access_token obtained during authentication (String)
-	*/
+  * @param $request_method The request method (String)
+  * @param $url The url of the request (String)
+  * @param $request_body_params TreeMap<String, String> of key value pairs representing the request body
+  * @param $nonce The nonce (String)
+  * @param $secret Your application's signing_secret (String)
+  * @param $token Your access_token obtained during authentication (String)
+  */
   SageoneSigner(String requestMethod, String requestUrl, TreeMap<String, String> requestBodyParams, String requestNonce, String signingSecret, String accessToken) {
     this.method = requestMethod;
     this.url = requestUrl;
