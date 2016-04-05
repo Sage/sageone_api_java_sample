@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 public class SageoneSigner {
   private String method;
   private String url;
-  private TreeMap<String, String> params;
+  private HashMap<String, String> params;
   private String nonce;
   private String secret;
   private String token;
@@ -24,7 +24,7 @@ public class SageoneSigner {
   * @param $secret Your application's signing_secret (String)
   * @param $token Your access_token obtained during authentication (String)
   */
-  SageoneSigner(String requestMethod, String requestUrl, TreeMap<String, String> requestBodyParams, String requestNonce, String signingSecret, String accessToken) {
+  SageoneSigner(String requestMethod, String requestUrl, HashMap<String, String> requestBodyParams, String requestNonce, String signingSecret, String accessToken) {
     this.method = requestMethod;
     this.url = requestUrl;
     this.params = requestBodyParams;
@@ -81,7 +81,7 @@ public class SageoneSigner {
 
   private String parameterString() {
     String parameterString = "";
-    TreeMap<String, String> combinedParams = new TreeMap<String,String>();
+    HashMap<String, String> combinedParams = new HashMap<String,String>();
     combinedParams.putAll(encodedQueryParams());
     combinedParams.putAll(encodedBodyParams());
 
@@ -98,8 +98,8 @@ public class SageoneSigner {
     return parameterString;
   }
 
-  private TreeMap<String, String> encodedQueryParams() {
-    TreeMap<String, String> encodedQueryParams = new TreeMap<String, String>();
+  private HashMap<String, String> encodedQueryParams() {
+	  HashMap<String, String> encodedQueryParams = new HashMap<String, String>();
     if (parsedUrl().getQuery() != null) {
       String[] queryParams = parsedUrl().getQuery().split("&");
 
@@ -112,8 +112,8 @@ public class SageoneSigner {
     return encodedQueryParams;
   }
 
-  private TreeMap<String, String> encodedBodyParams() {
-    TreeMap<String, String> encodedBodyParams = new TreeMap<String, String>();
+  private HashMap<String, String> encodedBodyParams() {
+	  HashMap<String, String> encodedBodyParams = new HashMap<String, String>();
 
     for (Map.Entry<String, String> entry : params.entrySet())
       {
