@@ -40,7 +40,7 @@ public class SageoneData extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
 		String endpoint = "https://api.sageone.com/" + req.getParameter("endpoint");
-		HashMap<String, String> params = new HashMap<String,String>();
+		TreeMap<String, String> params = new TreeMap<String,String>();
 		String nonce = Nonce.generateNonce();
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
 		String accessToken = req.getParameter("access_token");
@@ -84,14 +84,14 @@ public class SageoneData extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
 		String endpoint = "https://api.sageone.com/" + req.getParameter("endpoint");
-		HashMap<String, String> params;
+		TreeMap<String, String> params;
 		String nonce = Nonce.generateNonce();
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
 		String accessToken = req.getParameter("access_token");
 
-		// get the body params as a HashMap
+		// get the body params as a TreeMap
 		String jsonBody = req.getParameter("data");
-		params = new Gson().fromJson(jsonBody, new TypeToken<HashMap<String, String>>() {}.getType());
+		params = new Gson().fromJson(jsonBody, new TypeToken<TreeMap<String, String>>() {}.getType());
 
 		// Generate the signature
 		SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken);
