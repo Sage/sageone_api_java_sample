@@ -1,12 +1,17 @@
 package org.sage_one_sample.sageone;
 
-import java.net.*;
-import java.util.*;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.Map;
+import java.util.TreeMap;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 public class SageoneSigner {
 	private String method;
@@ -61,7 +66,6 @@ public class SageoneSigner {
 		signatureBaseString += percentEncode(parameterString());
 		signatureBaseString += "&";
 		signatureBaseString += percentEncode(nonce);
-
 		return signatureBaseString;
 	}
 

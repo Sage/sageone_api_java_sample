@@ -1,12 +1,14 @@
 package org.sage_one_sample.sageone;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -16,7 +18,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.json.*;
+import org.json.JSONObject;
 
 /**
  * Servlet implementation class AccessToken
@@ -42,7 +44,7 @@ public class SageoneToken extends HttpServlet {
 		params.add(new BasicNameValuePair("grant_type", "authorization_code"));
 		params.add(new BasicNameValuePair("redirect_uri", callbackUrl));
 
-		try {	
+		try {
 			HttpPost request = new HttpPost(requestURL);
 			request.setEntity(new UrlEncodedFormEntity(params));
 			HttpClient httpclient = HttpClients.createDefault();
