@@ -79,7 +79,7 @@ public class SageoneData extends HttpServlet {
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
 		String accessToken = req.getParameter("access_token");
 
-		// get the body params as a HashMap
+		// get the body params as a TreeMap
 		String jsonBody = req.getParameter("data");
 		params = new Gson().fromJson(jsonBody, new TypeToken<TreeMap<String, String>>() {}.getType());
 
