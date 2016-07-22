@@ -85,7 +85,7 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<input name='request_method' type='hidden' value='get'>");
 			resp.getWriter().println("<label for='endpoint'>Endpoint</label>");
 			resp.getWriter().println("<input name='endpoint' type='text' class='form-control' required='true'>");
-			resp.getWriter().println("<p>Example: accounts/v1/contacts</p>");
+			resp.getWriter().println("<p>Example: contacts</p>");
 			resp.getWriter().println("<input name='data' type='hidden' value=''>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
 			resp.getWriter().println("<input type='submit' value='GET' class='btn btn-primary'>");
@@ -97,10 +97,10 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<input name='request_method' type='hidden' value='post'>");
 			resp.getWriter().println("<label for='endpoint'>Endpoint</label>");
 			resp.getWriter().println("<input name='endpoint' type='text' class='form-control' required='true'>");
-			resp.getWriter().println("<p>Example: accounts/v1/contacts</p>");
+			resp.getWriter().println("<p>Example: contacts</p>");
 			resp.getWriter().println("<label for='data'>Post data</label>");
 			resp.getWriter().println("<textarea id='data' class='form-control' name='data'></textarea>");
-			resp.getWriter().println("<p>Example: {'contact[contact_type_id]': 1, 'contact[name]': 'Joe Bloggs'}</p>");
+			resp.getWriter().println("<p>Example: {'contact[contact_type_ids][]': 'CUSTOMER', 'contact[name]': 'Joe Bloggs'}</p>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
 			resp.getWriter().println("<input type='submit' value='POST' class='btn btn-primary'>");
 			resp.getWriter().println("</form>");
@@ -111,10 +111,10 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<input name='request_method' type='hidden' value='put'>");
 			resp.getWriter().println("<label for='endpoint'>Endpoint</label>");
 			resp.getWriter().println("<input name='endpoint' type='text' class='form-control' required='true'>");
-			resp.getWriter().println("<p>Example: accounts/v1/contacts/:id</p>");
+			resp.getWriter().println("<p>Example: contacts/:id</p>");
 			resp.getWriter().println("<label for='data'>Post data</label>");
 			resp.getWriter().println("<textarea id='data' class='form-control' name='data'></textarea>");
-			resp.getWriter().println("<p>Example: {'contact[contact_type_id]': 1, 'contact[name]': 'Joe Bloggs'}</p>");
+			resp.getWriter().println("<p>Example: {'contact[contact_type_ids][]': 'CUSTOMER', 'contact[name]': 'Joe Bloggs'}</p>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
 			resp.getWriter().println("<input type='submit' value='PUT' class='btn btn-primary'>");
 			resp.getWriter().println("</form>");
@@ -124,7 +124,7 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<form action='/SageOneSampleApp/sageone_data' method='get'>");
 			resp.getWriter().println("<input name='request_method' type='hidden' value='delete'>");
 			resp.getWriter().println("Endpoint: <input name='endpoint' type='text' class='form-control' required='true'>");
-			resp.getWriter().println("<p>Example: accounts/v1/contacts/:id</p>");
+			resp.getWriter().println("<p>Example: contacts/:id</p>");
 			resp.getWriter().println("<input name='data' type='hidden' value=''>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
 			resp.getWriter().println("<input type='submit' value='DELETE' class='btn btn-primary'>");

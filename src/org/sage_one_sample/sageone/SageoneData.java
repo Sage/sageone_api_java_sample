@@ -40,7 +40,7 @@ public class SageoneData extends HttpServlet {
 	/* GET and DELETE requests */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
-		String endpoint = "https://api.sageone.com/" + req.getParameter("endpoint");
+		String endpoint = SageoneConstants.BASE_ENDPOINT + req.getParameter("endpoint");
 		TreeMap<String, String> params = new TreeMap<String,String>();
 		String nonce = Nonce.generateNonce();
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
@@ -73,7 +73,7 @@ public class SageoneData extends HttpServlet {
 	/* POST and PUT requests */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
-		String endpoint = "https://api.sageone.com/" + req.getParameter("endpoint");
+		String endpoint = SageoneConstants.BASE_ENDPOINT + req.getParameter("endpoint");
 		TreeMap<String, String> params;
 		String nonce = Nonce.generateNonce();
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
@@ -133,6 +133,7 @@ public class SageoneData extends HttpServlet {
 		request.addHeader("Accept", "*/*");
 		request.addHeader("Content-Type", "application/x-www-form-urlencoded");
 		request.addHeader("User-Agent", "SageOneSampleApp");
+		request.addHeader("ocp-apim-subscription-key", SageoneConstants.APIM_SUBSCRIPTION_KEY);
 	}
 
 	/* render the response */
