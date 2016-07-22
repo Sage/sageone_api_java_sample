@@ -7,9 +7,14 @@
   <name>SageOneSampleApp</name>
   <dependencies>
     <dependency>
-	<groupId>org.json</groupId>
-	<artifactId>json</artifactId>
-	<version>20151123</version>
+	  <groupId>org.apache.httpcomponents</groupId>
+	  <artifactId>httpclient</artifactId>
+	  <version>4.5.2</version>
+    </dependency>
+    <dependency>
+	  <groupId>org.json</groupId>
+	  <artifactId>json</artifactId>
+	  <version>20151123</version>
     </dependency>
     <dependency>
       <groupId>com.cedarsoftware</groupId>
