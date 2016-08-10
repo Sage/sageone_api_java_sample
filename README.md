@@ -1,5 +1,8 @@
 # Sage One Java API Sample application
 
+### *FOR changes required for v3* please refer to the [v3 branch](https://github.com/Sage/sageone_api_java_sample/tree/v3)
+##### NOTE: v3 is currently under development. It is only available in Canada [Beta]
+
 Sample application that integrates with Sage One Accounting via the Sage One API.
 
 Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConstants.java) file with your application's client_id, client_secret, signing_secret and callback_url.
