@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+body {
+	font-family: helvetica sans_serif;
+	background-color: red;
+}
+
+body .center {
+	text-align: center;
+}
+
+body .center h1 {
+	margin-bottom: 10px;
+}
+
+body .well {
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	text-align: center;
+}
+
+body .container {
+	width: 1170px;
+}
+
+body {
+	padding-top: 60px;
+}
+
+section {
+	overflow: auto;
+}
+
+textarea {
+	resize: vertical;
+}
+
+.center {
+	text-align: center;
+}
+
+.center h1 {
+	margin-bottom: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1;
+}
+
+h1 {
+	font-size: 2em;
+	letter-spacing: -2px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.2em;
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: normal;
+	color: $gray-light;
+}
+
+p {
+	font-size: 1.1em;
+	line-height: 1.7em;
+}
+
+#logo {
+	float: left;
+	margin-right: 10px;
+	font-size: 1.2em;
+	color: white;
+	letter-spacing: -1px;
+	padding-top: 14px;
+	font-weight: bold;
+}
+
+#logo:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.debug_dump {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+}
+
+/*
+input, textarea, select, .uneditable-input {
+	border: 1px solid #bbb;
+	width: 100%;
+	margin-bottom: 15px;
+}
+*/
+
+input {
+	height: auto !important;
+}
+
+#error_explanation {
+	color: red;
+}
+
+#error_explanation ul {
+	color: red;
+	margin: 0 0 30px 0;
+}
+
+.field_with_errors .form-control {
+	color: $state-danger-text;
+}
+
+/*
+.btn {
+	width: 200px;
+	margin: 20px 0;
+}
+*/
+
+.endpoint_form {
+	margin-top: 60px;
+}
+
+ul.nav-tabs {
+	margin: 60px 0 40px 0;
+	border-bottom: none;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus {
+	font-size: 1.2em;
+	color: #fff !important;
+	background-color: #555 !important;
+	width: 130px;
+	margin-left: 3px;
+	text-align: center;
+	border: none !important;
+	border-radius: none !important;
+}
+
+.nav-tabs > li > a, .nav-tabs > li > a:focus, .nav-tabs > li > a:hover {
+	font-size: 1.2em;
+	background-color: #ddd;
+	color: #555;
+	width: 130px;
+	margin-left: 3px;
+	text-align: center;
+	border: none !important;
+	border-radius: 0 !important;
+}
+
+.nav-tabs > li.active {
+	border: none;
+}
+

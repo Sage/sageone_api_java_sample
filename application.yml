@@ -1,0 +1,21 @@
+logging:
+  level:
+    org.springframework:
+#      security: DEBUG
+#      web: DEBUG
+
+sage:
+  client:
+    clientId: #
+    clientSecret: #
+    signingSecret: #
+    baseUri: # base Uri for api calls
+    accessTokenUri: # .../oauth/token
+    userAuthorizationUri: # .../oauth/auth
+    tokenName: oauth_token
+    authenticationScheme: header
+    clientAuthenticationScheme: form
+    scope: full_access
+  resource:
+    userInfoUri: ${sage.client.baseUri}/core/v3/me
+
