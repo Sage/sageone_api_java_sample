@@ -20,6 +20,7 @@ public class SageoneSigner {
 	private String nonce;
 	private String secret;
 	private String token;
+	private String guid;
 
 	/**
 	* @param $request_method The request method (String)
@@ -28,14 +29,16 @@ public class SageoneSigner {
 	* @param $nonce The nonce (String)
 	* @param $secret Your application's signing_secret (String)
 	* @param $token Your access_token obtained during authentication (String)
+	* @param $resourceOwnerId Your resource_owner_id obtained during authentication (String)
 	*/
-	SageoneSigner(String requestMethod, String requestUrl, TreeMap<String, String> requestBodyParams, String requestNonce, String signingSecret, String accessToken) {
+	SageoneSigner(String requestMethod, String requestUrl, TreeMap<String, String> requestBodyParams, String requestNonce, String signingSecret, String accessToken, String resourceOwnerId) {
 		this.method = requestMethod;
 		this.url = requestUrl;
 		this.params = requestBodyParams;
 		this.nonce = requestNonce;
 		this.secret = signingSecret;
 		this.token = accessToken;
+		this.guid = resourceOwnerId;
 	}
 
 	/* Generate the request signature */
@@ -66,6 +69,8 @@ public class SageoneSigner {
 		signatureBaseString += percentEncode(parameterString());
 		signatureBaseString += "&";
 		signatureBaseString += percentEncode(nonce);
+		signatureBaseString += "&";
+		signatureBaseString += percentEncode(guid);
 		return signatureBaseString;
 	}
 
