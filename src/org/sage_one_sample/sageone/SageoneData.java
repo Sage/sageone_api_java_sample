@@ -179,6 +179,7 @@ public class SageoneData extends HttpServlet {
 			resp.getWriter().println("<div class='container'>");
 			resp.getWriter().println("<h1>Sage One Data</h1>");
 			resp.getWriter().println("<pre>" + prettyJson + "</pre>");
+			resp.getWriter().println("</div>");
 			resp.getWriter().println("</body>");
 			resp.getWriter().println("</html>");
 		} else
