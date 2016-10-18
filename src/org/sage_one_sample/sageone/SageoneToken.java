@@ -53,6 +53,7 @@ public class SageoneToken extends HttpServlet {
 			HttpEntity entity = response.getEntity();
 			JSONObject jsonResponse = new JSONObject(EntityUtils.toString(entity));
 			String token = jsonResponse.getString("access_token");
+			String resourceOwnerId = jsonResponse.getString("resource_owner_id");
 
 			resp.getWriter().println("<html>");
 			resp.getWriter().println("<head>");
@@ -73,6 +74,7 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<div class='col-md-6 col-md-offset-3'>");
 			resp.getWriter().println("<h3>Successfully authenticated!</h3>");
 			resp.getWriter().println("<p>Your Access Token is: " + token + "</p>");
+			resp.getWriter().println("<p>Your resource_owner_id is: " + resourceOwnerId + "</p>");
 			resp.getWriter().println("<ul class='nav nav-tabs' role='tablist'>");
 			resp.getWriter().println("<li role='presentation' class='active'><a href='#get' aria-controls='get' role='tab' data-toggle='tab'>GET</a></li>");
 			resp.getWriter().println("<li role='presentation'><a href='#post' aria-controls='post' role='tab' data-toggle='tab'>POST</a></li>");
@@ -88,6 +90,7 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<p>Example: contacts</p>");
 			resp.getWriter().println("<input name='data' type='hidden' value=''>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
+			resp.getWriter().println("<input name='resource_owner_id' type='hidden' value='" + resourceOwnerId + "'>");
 			resp.getWriter().println("<input type='submit' value='GET' class='btn btn-primary'>");
 			resp.getWriter().println("</form>");
 			resp.getWriter().println("</div>");
@@ -102,6 +105,7 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<textarea id='data' class='form-control' name='data'></textarea>");
 			resp.getWriter().println("<p>Example: {'contact[contact_type_ids][]': 'CUSTOMER', 'contact[name]': 'Joe Bloggs'}</p>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
+			resp.getWriter().println("<input name='resource_owner_id' type='hidden' value='" + resourceOwnerId + "'>");
 			resp.getWriter().println("<input type='submit' value='POST' class='btn btn-primary'>");
 			resp.getWriter().println("</form>");
 			resp.getWriter().println("</div>");
@@ -116,6 +120,7 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<textarea id='data' class='form-control' name='data'></textarea>");
 			resp.getWriter().println("<p>Example: {'contact[contact_type_ids][]': 'CUSTOMER', 'contact[name]': 'Joe Bloggs'}</p>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
+			resp.getWriter().println("<input name='resource_owner_id' type='hidden' value='" + resourceOwnerId + "'>");
 			resp.getWriter().println("<input type='submit' value='PUT' class='btn btn-primary'>");
 			resp.getWriter().println("</form>");
 			resp.getWriter().println("</div>");
@@ -127,6 +132,7 @@ public class SageoneToken extends HttpServlet {
 			resp.getWriter().println("<p>Example: contacts/:id</p>");
 			resp.getWriter().println("<input name='data' type='hidden' value=''>");
 			resp.getWriter().println("<input name='access_token' type='hidden' value='" + token + "'>");
+			resp.getWriter().println("<input name='resource_owner_id' type='hidden' value='" + resourceOwnerId + "'>");
 			resp.getWriter().println("<input type='submit' value='DELETE' class='btn btn-primary'>");
 			resp.getWriter().println("</form>");
 			resp.getWriter().println("</div>");
