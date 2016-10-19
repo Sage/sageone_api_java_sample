@@ -16,7 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class SageoneSigner {
 	private String method;
 	private String url;
-	private TreeMap<String, String> params;
+	private String params;
 	private String nonce;
 	private String secret;
 	private String token;
@@ -25,13 +25,13 @@ public class SageoneSigner {
 	/**
 	* @param $request_method The request method (String)
 	* @param $url The url of the request (String)
-	* @param $request_body_params TreeMap<String, String> of key value pairs representing the request body
+	* @param $request_body_params JSON string representing the post data (String)
 	* @param $nonce The nonce (String)
 	* @param $secret Your application's signing_secret (String)
 	* @param $token Your access_token obtained during authentication (String)
 	* @param $resourceOwnerId Your resource_owner_id obtained during authentication (String)
 	*/
-	SageoneSigner(String requestMethod, String requestUrl, TreeMap<String, String> requestBodyParams, String requestNonce, String signingSecret, String accessToken, String resourceOwnerId) {
+	SageoneSigner(String requestMethod, String requestUrl, String requestBodyParams, String requestNonce, String signingSecret, String accessToken, String resourceOwnerId) {
 		this.method = requestMethod;
 		this.url = requestUrl;
 		this.params = requestBodyParams;
@@ -123,8 +123,10 @@ public class SageoneSigner {
 
 	private TreeMap<String, String> encodedBodyParams() {
 		TreeMap<String, String> encodedBodyParams = new TreeMap<String, String>();
-		String bodyParams = mapToString(params);
-		String encodedBody = Base64.getEncoder().encodeToString(bodyParams.getBytes());
+
+		// Base64 encode the post data params
+		String encodedBody = Base64.getEncoder().encodeToString(params.getBytes());
+
 		encodedBodyParams.put("body", percentEncode(encodedBody));
 
 		return encodedBodyParams;
@@ -143,25 +145,5 @@ public class SageoneSigner {
 	private String percentEncode(final String string) {
 		String encoded = URLEncoder.encode(string).replaceAll("\\+", "%20");
 		return encoded;
-	}
-
-	private static String mapToString(TreeMap<String, String> map) {
-		StringBuilder stringBuilder = new StringBuilder();
-
-		for (String key : map.keySet()) {
-			if (stringBuilder.length() > 0) {
-				stringBuilder.append("&");
-			}
-			String value = map.get(key);
-			try {
-				stringBuilder.append((key != null ? URLEncoder.encode(key, "UTF-8") : ""));
-				stringBuilder.append("=");
-				stringBuilder.append(value != null ? URLEncoder.encode(value, "UTF-8") : "");
-			} catch (UnsupportedEncodingException e) {
-				throw new RuntimeException("This method requires UTF-8 encoding support", e);
-			}
-		}
-
-		return stringBuilder.toString();
 	}
 }
