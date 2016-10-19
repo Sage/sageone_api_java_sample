@@ -2,8 +2,6 @@ package org.sage_one_sample.sageone;
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.*;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,23 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 /**
  * Servlet implementation class GetData
@@ -41,12 +36,14 @@ public class SageoneData extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
 		String endpoint = SageoneConstants.BASE_ENDPOINT + req.getParameter("endpoint");
-		TreeMap<String, String> params = new TreeMap<String,String>();
+		String params;
 		String nonce = Nonce.generateNonce();
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
 		String accessToken = req.getParameter("access_token");
 		String resourceOwnerId = req.getParameter("resource_owner_id");
 
+		//set the body params as an empty string for GET requests
+		params = new String();
 
 		// Generate the signature
 		SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken, resourceOwnerId);
@@ -76,41 +73,34 @@ public class SageoneData extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
 		String endpoint = SageoneConstants.BASE_ENDPOINT + req.getParameter("endpoint");
-		TreeMap<String, String> params;
+		String params;
 		String nonce = Nonce.generateNonce();
 		String signingSecret = SageoneConstants.SIGNING_SECRET;
 		String accessToken = req.getParameter("access_token");
 		String resourceOwnerId = req.getParameter("resource_owner_id");
 
-		// get the body params as a TreeMap
-		String jsonBody = req.getParameter("data");
-		params = new Gson().fromJson(jsonBody, new TypeToken<TreeMap<String, String>>() {}.getType());
+		// get the body params as a JSON string
+		params = req.getParameter("data");
 
 		// Generate the signature
-		SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken, resourceOwnerId);
+	    SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken, resourceOwnerId);
 		String signature = s.signature();
 
 		try {
 			URIBuilder builder = new URIBuilder(endpoint);
 			URI uri = builder.build();
 
-			// Set the post body params
-			ArrayList<NameValuePair> postParameters;
-			postParameters = new ArrayList<NameValuePair>();
-			for (Map.Entry<String, String> entry : params.entrySet()) {
-				postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
-			}
-
+			StringEntity entity = new StringEntity(params);
 			HttpRequestBase request;
 
 			if (requestMethod.equals("POST")) {
 				request = new HttpPost(uri);
-				((HttpPost) request).setEntity(new UrlEncodedFormEntity(postParameters));
+				((HttpPost) request).setEntity(entity);
 			}
 			else
 			{
 				request = new HttpPut(uri);
-				((HttpPut) request).setEntity(new UrlEncodedFormEntity(postParameters));
+				((HttpPut) request).setEntity(entity);
 			}
 
 			setRequestHeaders(nonce, accessToken, resourceOwnerId, signature, request);
@@ -134,10 +124,11 @@ public class SageoneData extends HttpServlet {
 		request.addHeader("X-Nonce", nonce);
 		request.addHeader("Authorization", "Bearer " + accessToken);
 		request.addHeader("Accept", "*/*");
-		request.addHeader("Content-Type", "application/x-www-form-urlencoded");
+		request.addHeader("Content-Type", "application/json");
 		request.addHeader("User-Agent", "SageOneSampleApp");
 		request.addHeader("X-Site", resourceOwnerId);
-		request.addHeader("ocp-apim-subscription-key", SageoneConstants.APIM_SUBSCRIPTION_KEY);
+		// apim subscription key not required for test env
+//		request.addHeader("ocp-apim-subscription-key", SageoneConstants.APIM_SUBSCRIPTION_KEY);
 	}
 
 	/* render the response */
