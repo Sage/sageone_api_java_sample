@@ -83,7 +83,7 @@ public class SageoneData extends HttpServlet {
 		params = req.getParameter("data");
 
 		// Generate the signature
-	    SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken, resourceOwnerId);
+		SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken, resourceOwnerId);
 		String signature = s.signature();
 
 		try {
