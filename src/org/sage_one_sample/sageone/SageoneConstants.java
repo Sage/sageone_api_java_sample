@@ -9,5 +9,6 @@ public class SageoneConstants {
 	public static final String SCOPE = "full_access";
 	public static final String AUTH_ENDPOINT = "http://mysageone.ca.sageone.com/oauth2/auth";
 	public static final String TOKEN_ENDPOINT = "http://mysageone.ca.sageone.com/oauth2/token";
+	public static final String SIMPLE_SIGNUP_ENDPOINT = "https://gupshup-sageone-uat.sageone.biz/mobile/simple-signup/terms-and-conditions";
 	public static final String BASE_ENDPOINT = "https://api.columbus.sage.com/global/sageone/";
 }

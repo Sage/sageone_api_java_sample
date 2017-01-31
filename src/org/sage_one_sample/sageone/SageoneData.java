@@ -83,7 +83,7 @@ public class SageoneData extends HttpServlet {
 		params = req.getParameter("data");
 
 		// Generate the signature
-		SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken, resourceOwnerId);
+	    SageoneSigner s = new SageoneSigner(requestMethod, endpoint, params, nonce, signingSecret, accessToken, resourceOwnerId);
 		String signature = s.signature();
 
 		try {
@@ -127,7 +127,8 @@ public class SageoneData extends HttpServlet {
 		request.addHeader("Content-Type", "application/json");
 		request.addHeader("User-Agent", "SageOneSampleApp");
 		request.addHeader("X-Site", resourceOwnerId);
-		request.addHeader("ocp-apim-subscription-key", SageoneConstants.APIM_SUBSCRIPTION_KEY);
+		// apim subscription key not required for test env
+//		request.addHeader("ocp-apim-subscription-key", SageoneConstants.APIM_SUBSCRIPTION_KEY);
 	}
 
 	/* render the response */

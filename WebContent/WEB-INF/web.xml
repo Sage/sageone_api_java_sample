@@ -9,6 +9,14 @@
     <url-pattern>/sageone_auth</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>SimpleAuth</servlet-name>
+    <servlet-class>org.sage_one_sample.sageone.SimpleAuth</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimpleAuth</servlet-name>
+    <url-pattern>/simple_signup_auth</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>SageoneToken</servlet-name>
     <servlet-class>org.sage_one_sample.sageone.SageoneToken</servlet-class>
   </servlet>
