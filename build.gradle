@@ -54,7 +54,7 @@ dependencies {
 gretty {
 	springBoot = false
 	serverConfigFile = 'src/test/resources/jetty.xml'
-	contextPath = '/'
+	contextPath = '/SageOneSampleApp'
 	servletContainer = 'jetty9'
 	managedClassReload = true
 }

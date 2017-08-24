@@ -109,17 +109,11 @@
 				<version>${version.jetty}</version>
 				<configuration>
 					<jettyXml>src/test/resources/jetty.xml</jettyXml>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/SageOneSampleApp</contextPath>
+					</webApp>
 				</configuration>
-
-				<dependencies>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-server</artifactId>
-						<version>${version.jetty}</version>
-					</dependency>
-				</dependencies>
-
-
 			</plugin>
 
 		</plugins>

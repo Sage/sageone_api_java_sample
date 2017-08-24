@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 				final  Server server = (Server) configuration.configure();
 				final File webappDir = new File("src/main/webapp/");
 				final WebAppContext context = new WebAppContext();
-				context.setContextPath("/");
+				context.setContextPath("/SageOneSampleApp");
 				context.setResourceBase(webappDir.getAbsolutePath());
 
 				// Important! make sure Jetty scans all classes under looking
