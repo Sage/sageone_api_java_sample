@@ -1,52 +1,63 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>SageOneSampleApp</groupId>
-  <artifactId>SageOneSampleApp</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>SageOneSampleApp</name>
-  <dependencies>
-    <dependency>
-	  <groupId>org.apache.httpcomponents</groupId>
-	  <artifactId>httpclient</artifactId>
-	  <version>4.5.2</version>
-    </dependency>
-    <dependency>
-	  <groupId>org.json</groupId>
-	  <artifactId>json</artifactId>
-	  <version>20151123</version>
-    </dependency>
-    <dependency>
-      <groupId>com.cedarsoftware</groupId>
-      <artifactId>json-io</artifactId>
-      <version>4.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.0</version>
-      <type>jar</type>
-    </dependency>
-  </dependencies>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>SageOneSampleApp</groupId>
+	<artifactId>SageOneSampleApp</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>SageOneSampleApp</name>
+
+	<properties>
+		<version.httpclient>4.5.2</version.httpclient>
+		<version.jetty>8.1.14.v20131031</version.jetty>
+		<version.json>20151123</version.json>
+		<version.json-io>4.3.0</version.json-io>
+		<version.gson>2.0</version.gson>
+		<version.servlet-api>3.1.0</version.servlet-api>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${version.httpclient}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${version.json}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cedarsoftware</groupId>
+			<artifactId>json-io</artifactId>
+			<version>${version.json-io}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${version.gson}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${version.servlet-api}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
