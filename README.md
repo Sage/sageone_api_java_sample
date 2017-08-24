@@ -29,9 +29,8 @@ You can run your application in different ways:
 * Main class [JettyRunner.java](src/test/java/org/sage_one_sample/sageone/JettyRunner.java)
 * Eclipe / Tomcat plugins
 * Maven: `mvn jetty:run`
-* Gradle: 
+* Gradle: `gradle appRun`
 
 
-   using Eclipse / Tomcat.
 
 Access the [home page](http://localhost:8080/SageOneSampleApp), authorize and make an API call.
