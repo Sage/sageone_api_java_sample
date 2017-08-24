@@ -1,7 +1,7 @@
 package org.sage_one_sample.sageone;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class SageoneConfigs {
@@ -12,13 +12,18 @@ public class SageoneConfigs {
 		return INSTANCE;
 	}
 	
-	private Properties configs;
+	private Properties configs = new Properties();
 	
 	private SageoneConfigs() {
-		try (FileInputStream in = new FileInputStream("./application.properties")) {
-			configs.load(in);
-		} catch (IOException ex) {
-			throw new RuntimeException(ex.getMessage(), ex);
+		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties");
+		if (in != null) {
+			try {
+				configs.load(in);
+			} catch (IOException ex) {
+				throw new RuntimeException(ex.getMessage(), ex);
+			}
+		} else {
+			throw new RuntimeException(">>>> Please, make a copy from the file\n\t\"/src/main/resources/application-sample.properties\" to\n\t\"/src/main/resources/application.properties\" and adjust the parameters accordingly to your application\n\n");
 		}
 	}
 	
@@ -30,10 +35,6 @@ public class SageoneConfigs {
 		}
 		return value;
 	}
-	
-	
-	
-	
-	
+
 
 }

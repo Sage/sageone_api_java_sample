@@ -20,8 +20,6 @@ import org.slf4j.LoggerFactory;
 	    private void start() {
 	        try {
 
-
-
 	            LOG.info("Starting Jetty Web Server ...");
 	            final FileInputStream in = new FileInputStream(new File("src/test/resources/jetty.xml"));
 	            final XmlConfiguration configuration = new XmlConfiguration(in);
@@ -37,7 +35,6 @@ import org.slf4j.LoggerFactory;
 				// for annotations. ie:  bin (eclipse), classes (idea), etc
 				context.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern", ".*/bin/.*|.*/classes/.*|.*/target/.*");
 				context.setParentLoaderPriority(true);
-
 
 				// Config and launch server
 				server.setHandler(context);
