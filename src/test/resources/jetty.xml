@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+	<Call name="addConnector">
+		<Arg>
+			<New id="httpConnector" class="org.eclipse.jetty.server.ServerConnector">
+				<Arg name="server"><Ref refid="Server" /></Arg>
+				<Arg name="factories">
+					<Array type="org.eclipse.jetty.server.ConnectionFactory">
+						<Item>
+							<New class="org.eclipse.jetty.server.HttpConnectionFactory">
+								<Arg name="config">
+									<New id="httpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
+										<Arg>
+											<New class="org.eclipse.jetty.server.HttpConfiguration">
+												<Set name="secureScheme">http</Set>
+												<Set name="securePort"><SystemProperty name="server.http.port" default="8080" /></Set>
+												<Set name="outputBufferSize">32768</Set>
+												<Set name="requestHeaderSize">8192</Set>
+												<Set name="responseHeaderSize">8192</Set>
+												<Set name="sendServerVersion">true</Set>
+												<Set name="sendDateHeader">false</Set>
+												<Set name="headerCacheSize">512</Set>
+											</New>
+										</Arg>
+									</New>
+								</Arg>
+							</New>
+						</Item>
+					</Array>
+				</Arg>
+				<Set name="port"><SystemProperty name="server.http.port" default="8080" /></Set>
+			</New>
+		</Arg>
+	</Call>
+
+	<!-- 
+	<New id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory">
+		<Set name="KeyStorePath">src/test/resources/keystore.jks</Set>
+		<Set name="KeyStorePassword">changeit</Set>
+		<Set name="KeyStoreType">JKS</Set>
+		<Set name="KeyManagerPassword">changeit</Set>
+		<Set name="TrustStorePath">src/test/resources/keystore.jks</Set>
+		<Set name="TrustStorePassword">changeit</Set>
+		<Set name="ExcludeCipherSuites">
+			<Array type="String">
+				<Item>.*_RSA_.*MD5$</Item>
+				<Item>.*_RSA_.*SHA1$</Item>
+				<Item>.*_RSA_.*SHA$</Item>
+				<Item>.*_DHE_.*SHA$</Item>
+			</Array>
+		</Set>
+	</New>
+	
+	<Call name="addConnector">
+		<Arg>
+			<New id="httpConnectors" class="org.eclipse.jetty.server.ServerConnector">
+				<Arg name="server"><Ref refid="Server" /></Arg>
+				<Arg name="factories">
+					<Array type="org.eclipse.jetty.server.ConnectionFactory">
+						<Item>
+							<New id="sslConnectionFactory" class="org.eclipse.jetty.server.SslConnectionFactory">
+								<Arg><Ref refid="sslContextFactory" /></Arg>
+								<Arg>HTTP/1.1</Arg>
+							</New>
+						</Item>
+						<Item>
+							<New class="org.eclipse.jetty.server.HttpConnectionFactory">
+								<Arg name="config">
+									<New id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
+										<Arg>
+											<New class="org.eclipse.jetty.server.HttpConfiguration">
+												<Set name="secureScheme">https</Set>
+												<Set name="securePort"><SystemProperty name="server.https.port" default="8443" /></Set>
+												<Set name="outputBufferSize">32768</Set>
+												<Set name="requestHeaderSize">8192</Set>
+												<Set name="responseHeaderSize">8192</Set>
+												<Set name="sendServerVersion">true</Set>
+												<Set name="sendDateHeader">false</Set>
+												<Set name="headerCacheSize">512</Set>
+											</New>
+										</Arg>
+										<Call name="addCustomizer">
+											<Arg><New class="org.eclipse.jetty.server.SecureRequestCustomizer" /></Arg>
+										</Call>
+									</New>
+								</Arg>
+							</New>
+						</Item>
+					</Array>
+				</Arg>
+				<Set name="port"><SystemProperty name="server.https.port" default="7443" /></Set>
+			</New>
+		</Arg>
+	</Call>
+	-->
+
+
+	<Set name="handler">
+		<New id="Handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
+			<Set name="handlers">
+				<Array type="org.eclipse.jetty.server.Handler">
+					<Item>
+						<New id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection" />
+					</Item>
+					<Item>
+						<New id="DefaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler" />
+					</Item>
+				</Array>
+			</Set>
+		</New>
+	</Set>
+
+
+	<Call class="org.eclipse.jetty.webapp.Configuration$ClassList" name="setServerDefault">
+		<Arg><Ref refid="Server" /></Arg>
+		<Call name="addAfter">
+			<Arg name="afterClass">org.eclipse.jetty.webapp.FragmentConfiguration</Arg>
+			<Arg>
+				<Array type="String">
+					<Item>org.eclipse.jetty.plus.webapp.EnvConfiguration</Item>
+					<Item>org.eclipse.jetty.plus.webapp.PlusConfiguration</Item>
+				</Array>
+			</Arg>
+		</Call>
+		<Call name="addBefore">
+			<Arg name="beforeClass">org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Arg>
+			<Arg>
+				<Array type="String">
+					<Item>org.eclipse.jetty.annotations.AnnotationConfiguration</Item>
+				</Array>
+			</Arg>
+		</Call>
+	</Call>
+
+	<!-- =========================================================== -->
+	<!-- extra server options -->
+	<!-- =========================================================== -->
+	<Set name="stopAtShutdown">true</Set>
+	<Set name="stopTimeout">5000</Set>
+	<Set name="dumpAfterStart">false</Set>
+	<Set name="dumpBeforeStop">false</Set>
+
+</Configure>
+

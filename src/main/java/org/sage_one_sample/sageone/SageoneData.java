@@ -35,15 +35,18 @@ import com.google.gson.reflect.TypeToken;
  */
 @WebServlet("/SageoneData")
 public class SageoneData extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	private final SageoneConfigs configs = SageoneConfigs.getInstance();
 
 	/* GET and DELETE requests */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String requestMethod = req.getParameter("request_method").toUpperCase();
 		String endpoint = "https://api.sageone.com/" + req.getParameter("endpoint");
 		TreeMap<String, String> params = new TreeMap<String,String>();
 		String nonce = Nonce.generateNonce();
-		String signingSecret = SageoneConstants.SIGNING_SECRET;
+		String signingSecret = configs.getProperty(SageoneConstants.SIGNING_SECRET_PROPERTY);
 		String accessToken = req.getParameter("access_token");
 
 		// Generate the signature
@@ -76,7 +79,7 @@ public class SageoneData extends HttpServlet {
 		String endpoint = "https://api.sageone.com/" + req.getParameter("endpoint");
 		TreeMap<String, String> params;
 		String nonce = Nonce.generateNonce();
-		String signingSecret = SageoneConstants.SIGNING_SECRET;
+		String signingSecret = configs.getProperty(SageoneConstants.SIGNING_SECRET_PROPERTY);
 		String accessToken = req.getParameter("access_token");
 
 		// get the body params as a TreeMap

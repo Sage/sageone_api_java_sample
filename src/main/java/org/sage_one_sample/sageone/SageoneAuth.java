@@ -19,10 +19,11 @@ public class SageoneAuth extends HttpServlet {
 	 * Redirect the user to the authorisation url with the required query params
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String clientId = SageoneConstants.CLIENT_ID;
-		String callbackUrl = SageoneConstants.CALLBACK_URL;
-		String authServer = SageoneConstants.AUTH_ENDPOINT;
-		String scope = SageoneConstants.SCOPE;
+		SageoneConfigs configs = SageoneConfigs.getInstance();
+		String clientId = configs.getProperty(SageoneConstants.CLIENT_ID_PROPERTY);
+		String callbackUrl = configs.getProperty(SageoneConstants.CALLBACK_URL_PROPERTY);
+		String authServer = configs.getProperty(SageoneConstants.AUTH_ENDPOINT_PROPERTY);
+		String scope = configs.getProperty(SageoneConstants.SCOPE_PROPERTY);
 		String queryParams = "?response_type=code&client_id=" + clientId + "&redirect_uri=" + callbackUrl + "&scope=" + scope;
 
 		resp.sendRedirect(resp.encodeRedirectURL(authServer + queryParams));
