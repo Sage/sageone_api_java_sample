@@ -2,7 +2,8 @@
 
 Sample application that integrates with Sage One Accounting via the Sage One API.
 
-Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConstants.java) file with your application's client_id, client_secret, signing_secret and callback_url.
+Make a copy from the file [application-sample.properties](/src/test/resources/application-sample.properties) to "application.properties" in the 
+same directory (project directory) and update with your application's `client_id`, `client_secret`, `signing_secret` and `callback_url`.
 
 Authentication with Sage One is handled as follows:
 
@@ -19,8 +20,14 @@ Clone the repo:
 
 and import the project into Eclipse.
 
-Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConstants.java) file with your application's `client_id`, `client_secret`, `signing_secret` and `callback_url`.
+Update your application.properties file with your application's `client_id`, `client_secret`, `signing_secret` and `callback_url`.
 
-Run your application using Eclipse / Tomcat.
+You can run your application in different ways:
+* Main class [JettyRunner.java](src/test/java/org/sage_one_sample/sageone/JettyRunner.java)
+* Eclipe / Tomcat plugins
+* Maven: `mvn jetty:run`
+* Gradle: `gradle appRun`
 
 Access the [home page](http://localhost:8080/SageOneSampleApp), authorize and make an API call.
+
+

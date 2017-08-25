@@ -26,15 +26,16 @@ import org.json.JSONObject;
 @WebServlet("/SageoneToken")
 public class SageoneToken extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final SageoneConfigs configs = SageoneConfigs.getInstance();
 
 	/**
 	 * POST request to exchange authorisation code for access_token
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String requestURL = SageoneConstants.TOKEN_ENDPOINT;
-		String clientId = SageoneConstants.CLIENT_ID;
-		String secret = SageoneConstants.CLIENT_SECRET;
-		String callbackUrl = SageoneConstants.CALLBACK_URL;
+		String requestURL = configs.getProperty(SageoneConstants.TOKEN_ENDPOINT_PROPERTY);
+		String clientId = configs.getProperty(SageoneConstants.CLIENT_ID_PROPERTY);
+		String secret = configs.getProperty(SageoneConstants.CLIENT_SECRET_PROPERTY);
+		String callbackUrl = configs.getProperty(SageoneConstants.CALLBACK_URL_PROPERTY);
 		String code = req.getParameter("code");
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 
