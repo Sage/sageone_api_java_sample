@@ -2,7 +2,7 @@
 
 Sample application that integrates with Sage One Accounting via the Sage One API.
 
-Make a copy from the file [application-sample.properties](/src/main/resources/application-sample.properties) to "application.properties" in the 
+Make a copy from the file [application-sample.properties](/src/test/resources/application-sample.properties) to "application.properties" in the 
 same directory (project directory) and update with your application's `client_id`, `client_secret`, `signing_secret` and `callback_url`.
 
 Authentication with Sage One is handled as follows:
