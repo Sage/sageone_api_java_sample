@@ -1,0 +1,62 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'org.akhikhl.gretty:gretty:+'
+	}
+}
+
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+group = 'SageOneSampleApp'
+version = '0.0.1-SNAPSHOT'
+
+description = 'SageOneSampleApp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+repositories {   
+	jcenter()
+	mavenCentral()
+}
+
+ext {
+	versionHttpClient = '4.5.2'
+	versionJson = '20151123'
+	versionJsonIo = '4.3.0'
+	versionGson = '2.0'
+	versionSlf4j = '1.7.25'
+	versionJetty = '9.2.15.v20160210'
+}
+
+dependencies {
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: versionHttpClient
+    compile group: 'org.json', name: 'json', version: versionJson
+    compile group: 'com.cedarsoftware', name: 'json-io', version: versionJsonIo
+    compile group: 'com.google.code.gson', name: 'gson', version: versionGson
+    providedCompile group: 'org.slf4j', name: 'slf4j-simple', version: versionSlf4j
+    providedCompile group: 'org.slf4j', name: 'jcl-over-slf4j', version: versionSlf4j
+    providedCompile group: 'org.eclipse.jetty', name: 'jetty-server', version: versionJetty
+    providedCompile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: versionJetty
+    providedCompile group: 'org.eclipse.jetty', name: 'jetty-servlets', version: versionJetty
+    providedCompile group: 'org.eclipse.jetty', name: 'jetty-webapp', version: versionJetty
+    providedCompile group: 'org.eclipse.jetty', name: 'jetty-annotations', version: versionJetty
+}
+
+gretty {
+	springBoot = false
+	serverConfigFile = 'src/test/resources/jetty.xml'
+	contextPath = '/SageOneSampleApp'
+	servletContainer = 'jetty9'
+	managedClassReload = true
+}
+
+

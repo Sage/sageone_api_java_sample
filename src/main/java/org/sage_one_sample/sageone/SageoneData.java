@@ -31,14 +31,15 @@ import com.google.gson.GsonBuilder;
 @WebServlet("/SageoneData")
 public class SageoneData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final SageoneConfigs configs = SageoneConfigs.getInstance();
 
 	/* GET and DELETE requests */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
-		String endpoint = SageoneConstants.BASE_ENDPOINT + req.getParameter("endpoint");
+		String endpoint = configs.getProperty(SageoneConstants.BASE_ENDPOINT_PROPERTY) + req.getParameter("endpoint");
 		String params;
 		String nonce = Nonce.generateNonce();
-		String signingSecret = SageoneConstants.SIGNING_SECRET;
+		String signingSecret = configs.getProperty(SageoneConstants.SIGNING_SECRET_PROPERTY);
 		String accessToken = req.getParameter("access_token");
 		String resourceOwnerId = req.getParameter("resource_owner_id");
 
@@ -72,10 +73,10 @@ public class SageoneData extends HttpServlet {
 	/* POST and PUT requests */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestMethod = req.getParameter("request_method").toUpperCase();
-		String endpoint = SageoneConstants.BASE_ENDPOINT + req.getParameter("endpoint");
+		String endpoint = configs.getProperty(SageoneConstants.BASE_ENDPOINT_PROPERTY) + req.getParameter("endpoint");
 		String params;
 		String nonce = Nonce.generateNonce();
-		String signingSecret = SageoneConstants.SIGNING_SECRET;
+		String signingSecret = configs.getProperty(SageoneConstants.SIGNING_SECRET_PROPERTY);
 		String accessToken = req.getParameter("access_token");
 		String resourceOwnerId = req.getParameter("resource_owner_id");
 
@@ -127,7 +128,7 @@ public class SageoneData extends HttpServlet {
 		request.addHeader("Content-Type", "application/json");
 		request.addHeader("User-Agent", "SageOneSampleApp");
 		request.addHeader("X-Site", resourceOwnerId);
-		request.addHeader("ocp-apim-subscription-key", SageoneConstants.APIM_SUBSCRIPTION_KEY);
+		request.addHeader("ocp-apim-subscription-key", configs.getProperty(SageoneConstants.APIM_SUBSCRIPTION_KEY_PROPERTY));
 	}
 
 	/* render the response */
