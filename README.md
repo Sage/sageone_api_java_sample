@@ -2,6 +2,8 @@
 
 Sample application that integrates with Sage One Accounting via the Sage One API.
 
+##### Note: Request signing and noncing (the X-Signature and X-Nonce headers) is no longer checked in v3. The related code will soon be removed from this repo.
+
 Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConstants.java) file with your application's client_id, client_secret, signing_secret and callback_url.
 
 Authentication with Sage One is handled as follows:
