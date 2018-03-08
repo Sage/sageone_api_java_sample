@@ -1,14 +1,14 @@
-# Sage One Java API Sample application
+# Sage Business Cloud Java API Sample application
 
 ### *FOR changes required for v3* please refer to the [v3 branch](https://github.com/Sage/sageone_api_java_sample/tree/v3)
 
 ##### Note: Request signing and noncing (the X-Signature and X-Nonce headers) is no longer checked in v3. The related code will soon be removed from this repo.
 
-Sample application that integrates with Sage One Accounting via the Sage One API.
+Sample application that integrates with Sage Business Cloud Accounting via the Sage API.
 
 Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConstants.java) file with your application's client_id, client_secret, signing_secret and callback_url.
 
-Authentication with Sage One is handled as follows:
+Authentication with Sage is handled as follows:
 
 * Auth redirect is handled in [SageoneAuth.java](src/org/sage_one_sample/sageone/SageoneAuth.java)
 * Token exchange is handled in [SageoneToken.java](src/org/sage_one_sample/sageone/SageoneToken.java)
