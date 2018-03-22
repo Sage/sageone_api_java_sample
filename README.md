@@ -28,3 +28,10 @@ Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConsta
 Run your application using Eclipse / Tomcat.
 
 Access the [home page](http://localhost:8080/SageOneSampleApp), authorize and make an API call.
+
+## License
+
+This sample application is available as open source under the terms of the
+[MIT licence](LICENSE).
+
+Copyright (c) 2018 Sage Group Plc. All rights reserved.
