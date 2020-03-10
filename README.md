@@ -1,4 +1,10 @@
-# Sage Business Cloud Java API Sample application
+# Sage Business Cloud Java API Sample application (deprecated)
+
+**Please note that this Sample Application is not updated anymore.** To get an overview of all current sample applications
+for the Sage Accounting API, please visit https://developer.sage.com/api/accounting/guides/sample_apps/.
+
+<details><summary>Application Setup</summary>
+<p>
 
 ### *FOR changes required for v3* please refer to the [v3 branch](https://github.com/Sage/sageone_api_java_sample/tree/v3)
 
@@ -28,10 +34,12 @@ Update the [SageoneConstants.java](src/org/sage_one_sample/sageone/SageoneConsta
 Run your application using Eclipse / Tomcat.
 
 Access the [home page](http://localhost:8080/SageOneSampleApp), authorize and make an API call.
+</p>
+</details>
 
 ## License
 
 This sample application is available as open source under the terms of the
 [MIT licence](LICENSE).
 
-Copyright (c) 2018 Sage Group Plc. All rights reserved.
+Copyright (c) 2020 Sage Group Plc. All rights reserved.
